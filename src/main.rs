@@ -8,8 +8,14 @@ fn main() {
         process::exit(1);
     });
 
-    let contents = fs::read_to_string(config.file_path).expect("Error reading file.");
+    println!("Searching for {}", config.pattern);
+    println!("In file {}\n", config.file_path);
 
+    run(config);
+}
+
+fn run(config: Config) {
+    let contents = fs::read_to_string(config.file_path).expect("Error reading file.");
     println!("{contents}");
 }
 
