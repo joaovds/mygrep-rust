@@ -34,7 +34,15 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     };
 
     for line in results {
-        println!("{line}");
+        if config.ignore_case {
+            println!("{line}");
+        } else {
+            let line = line.replace(
+                &config.pattern,
+                &format!("\x1b[32m{}\x1b[0m", &config.pattern),
+            );
+            println!("{line}");
+        }
     }
 
     Ok(())

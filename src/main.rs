@@ -10,8 +10,8 @@ fn main() {
         process::exit(1);
     });
 
-    println!("Searching for {}", config.pattern);
-    println!("In file {}\n", config.file_path);
+    println!("Searching for \x1b[34m{}\x1b[0m", config.pattern);
+    println!("In file \x1b[34m{}\x1b[0m\n", config.file_path);
 
     if let Err(e) = mygrep::run(config) {
         println!("Application error: {e}");
