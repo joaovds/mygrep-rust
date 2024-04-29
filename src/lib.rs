@@ -40,6 +40,19 @@ pub fn search<'a>(pattern: &str, contents: &'a str) -> Vec<&'a str> {
     results
 }
 
+pub fn search_case_insensitive<'a>(pattern: &str, contents: &'a str) -> Vec<&'a str> {
+    let mut results = Vec::new();
+    let pattern = pattern.to_lowercase();
+
+    for line in contents.lines() {
+        if line.to_lowercase().contains(&pattern) {
+            results.push(line);
+        }
+    }
+
+    results
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -86,6 +99,6 @@ To seek our pale enchanted gold.
             "We must away, ere break of day,",
         ];
 
-        assert_eq!(expected_result, search(pattern, contents));
+        assert_eq!(expected_result, search_case_insensitive(pattern, contents));
     }
 }
