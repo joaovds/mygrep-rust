@@ -55,4 +55,37 @@ this is test cba
 
         assert_eq!(vec!["hello abc"], search(pattern, contents));
     }
+
+    #[test]
+    fn case_sensitive() {
+        let pattern = "M";
+        let contents = "\
+Far over the Misty Mountains cold,
+To dungeons deep and caverns old,
+We must away, ere break of day,
+To seek our pale enchanted gold.
+        ";
+
+        let expected_result = vec!["Far over the Misty Mountains cold,"];
+
+        assert_eq!(expected_result, search(pattern, contents));
+    }
+
+    #[test]
+    fn case_insensitive() {
+        let pattern = "M";
+        let contents = "\
+Far over the Misty Mountains cold,
+To dungeons deep and caverns old,
+We must away, ere break of day,
+To seek our pale enchanted gold.
+        ";
+
+        let expected_result = vec![
+            "Far over the Misty Mountains cold,",
+            "We must away, ere break of day,",
+        ];
+
+        assert_eq!(expected_result, search(pattern, contents));
+    }
 }
