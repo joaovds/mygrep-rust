@@ -21,6 +21,10 @@ impl Config {
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
 
+    for line in search(&config.pattern, &contents) {
+        println!("{line}");
+    }
+
     Ok(())
 }
 
